@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(Aker VERSION 0.1)
 
-file(GLOB_RECURSE SOURCE_FILES src/*)
+file(GLOB_RECURSE SOURCE_FILES "src/*.cpp", "src/*.h")
 add_executable(Aker ${SOURCE_FILES})
 
 add_subdirectory(thirdparty/glfw)
