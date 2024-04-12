@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(Aker VERSION 0.1)
 
-add_executable(Aker src/main.cpp)
+file(GLOB_RECURSE SOURCE_FILES src/*)
+add_executable(Aker ${SOURCE_FILES})
 
 add_subdirectory(thirdparty/glfw)
 add_subdirectory(thirdparty/glad)
