@@ -5,14 +5,14 @@
 namespace aker {
 
     Application::Application(std::string name, GLWindow& window)
-    : name_(name), window_(window)
+    : name_(name), window_(window), logger_(name)
     {}
 
     void Application::Loop()
     {
-        printf("Executing %s loop\n", name_.c_str());
+        logger_.Info("Executing %s loop", name_.c_str());
         window_.Render();
-        printf("%s finished running\n", name_.c_str());
+        logger_.Info("%s finished running", name_.c_str());
     }
 
 };

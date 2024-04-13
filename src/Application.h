@@ -4,6 +4,7 @@
 #include <string>
 
 #include "GLWindow.h"
+#include "Utils/Logger.h"
 
 namespace aker {
     class Application 
@@ -15,6 +16,7 @@ namespace aker {
     private:
         std::string name_ = "Unnamed";
         GLWindow& window_;
+        Logger logger_;
     };
 }
 
