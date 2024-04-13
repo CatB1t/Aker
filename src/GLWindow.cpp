@@ -2,13 +2,17 @@
 
 #include <cassert>
 #include <stdio.h>
+#include <format>
 
 #include "glad/gl.h"
 #include "glfw/glfw3.h"
 
 namespace aker {
+
+    Logger GLWindow::callbackLogger_("GLFW_CALLBACK");
+
     GLWindow::GLWindow(int width, int height, std::string title)
-    : width_(width), height_(height), title_(title), window_(nullptr)
+    : width_(width), height_(height), title_(title), window_(nullptr), logger_(std::format("GLFW({})", title))
     {
         InitWindow_();
     }
@@ -35,7 +39,7 @@ namespace aker {
 
     void GLWindow::ErrorCallback_(int error, const char* desc)
     {
-        fprintf(stderr, "GLFW::Error: %s", desc);
+        callbackLogger_.Error(desc);
     }
 
     void GLWindow::InitWindow_()
@@ -43,7 +47,7 @@ namespace aker {
         if(!glfwInit())
         {
             // TODO should terminate
-            fprintf(stderr, "GLFW::Error: failed to initalize glfw\n");
+            logger_.Error("Failed to initialize GLFW");
         }
         glfwSetErrorCallback(ErrorCallback_);
 
@@ -51,7 +55,7 @@ namespace aker {
         window_ = glfwCreateWindow(width_, height_, title_.c_str(), nullptr, nullptr);
         if(!window_)
         {
-            fprintf(stderr, "GLFW::Error: failed to create window %s\n", title_.c_str());
+			logger_.Error("Failed to create window");
         }
 
         glfwMakeContextCurrent(window_);

@@ -6,6 +6,8 @@
 #define GLFW_INCLUDE_NONE
 #include "GLFW/glfw3.h"
 
+#include "Utils/Logger.h"
+
 namespace aker {
 
     class GLWindow {
@@ -20,6 +22,7 @@ namespace aker {
 
     private:
         static void ErrorCallback_(int error, const char* desc);
+        static Logger callbackLogger_;
 
         void InitWindow_();
         void SetOpenGLHints_();
@@ -28,6 +31,7 @@ namespace aker {
         int height_;
         std::string title_;
         GLFWwindow* window_;
+        Logger logger_;
     };
 
 };
