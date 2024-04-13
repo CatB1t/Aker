@@ -1,11 +1,12 @@
 #include "Application.h"
 
 #include <string>
+#include <format>
 
 namespace aker {
 
     Application::Application(std::string name, GLWindow& window)
-    : name_(name), window_(window), logger_(name)
+    : name_(name), window_(window), logger_(std::format("Application({})", name))
     {}
 
     void Application::Loop()
