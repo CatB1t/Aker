@@ -3,9 +3,17 @@
 #include <format>
 
 namespace aker {
+	Logger::Logger() : prefix_("Unnamed_Logger")
+	{}
+
 	Logger::Logger(const std::string& prefix)
 		: prefix_(prefix) 
 	{}
+
+	void Logger::SetPrefix(const std::string& prefix)
+	{
+		prefix_ = prefix;
+	}
 
 	void Logger::Info(const char* format, ...)
 	{
