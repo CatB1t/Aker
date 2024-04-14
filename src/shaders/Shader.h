@@ -22,6 +22,7 @@ namespace aker {
 		~Shader();
 		const std::string& GetSourceCode() const;
 		ShaderType GetType() const;
+		void Build();
 
 		void Bind() const override {};
 		void Unbind() const override {};
