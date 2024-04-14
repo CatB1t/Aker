@@ -83,7 +83,7 @@ namespace aker {
 
 	void Shader::Create_()
 	{
-		SetId(glCreateShader(shader_enum_to_internal_.at(type_)));
+		SetId_(glCreateShader(shader_enum_to_internal_.at(type_)));
 
 		LoadSrcFile_();
 		const char* src = src_code_.c_str();

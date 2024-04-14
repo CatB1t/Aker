@@ -12,7 +12,7 @@ namespace aker
 		unsigned int GetId() const { return opengl_id_; };
 	protected:
 		unsigned int opengl_id_ = -1;
-		void SetId(unsigned int id) { opengl_id_ = id; };
+		void SetId_(unsigned int id) { opengl_id_ = id; };
 		virtual void Create_() = 0;
 		virtual void Delete_() = 0;
 	};
