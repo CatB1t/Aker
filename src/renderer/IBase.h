@@ -1,5 +1,5 @@
-#ifndef _RENDERER_BASE_H_
-#define _RENDERER_BASE_H_
+#ifndef _RENDERER_IBASE_H_
+#define _RENDERER_IBASE_H_
 
 namespace aker
 {
