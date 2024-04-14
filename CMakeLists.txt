@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 set(CMAKE_CXX_STANDARD 20)
+
+add_compile_definitions("SHADERS_ROOT_ABS_PATH=\"${CMAKE_SOURCE_DIR}/assets/shaders/\"")
 project(Aker VERSION 0.1)
 
 file(GLOB_RECURSE SOURCE_FILES "src/*.cpp" "src/*.h")
