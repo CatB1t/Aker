@@ -4,7 +4,7 @@
 #include <string>
 
 #include "GLWindow.h"
-#include "Utils/Logger.h"
+#include "utils/Logger.h"
 
 namespace aker {
     class Application 
