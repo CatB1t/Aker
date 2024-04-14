@@ -10,8 +10,9 @@ namespace aker
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
 		unsigned int GetId() const { return opengl_id_; };
-	private:
+	protected:
 		unsigned int opengl_id_ = -1;
+		void SetId(unsigned int id) { opengl_id_ = id; };
 		virtual void Create_() = 0;
 		virtual void Delete_() = 0;
 	};
