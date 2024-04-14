@@ -30,6 +30,11 @@ namespace aker {
 		return src_code_;
 	}
 
+	ShaderType Shader::GetType() const
+	{
+		return type_;
+	}
+
 	void Shader::Init_() 
 	{
 		std::filesystem::path shader_path{ path_ };

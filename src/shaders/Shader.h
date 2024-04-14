@@ -14,11 +14,14 @@ namespace aker {
 		kFrag
 	};
 
+	// TODO must define a copy constructor to avoid other copies from deleting
+	// shader with copied ID
 	class Shader : public IBase {
 	public:
 		Shader(const std::string& path);
 		~Shader();
 		const std::string& GetSourceCode() const;
+		ShaderType GetType() const;
 
 		void Bind() const override {};
 		void Unbind() const override {};
