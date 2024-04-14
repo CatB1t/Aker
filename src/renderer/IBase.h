@@ -7,7 +7,7 @@ namespace aker
 	public:
 		IBase() {};
 		virtual ~IBase() {};
-		virtual unsigned int GetId() const = 0;
+		unsigned int GetId() const { return opengl_id_; };
 	private:
 		unsigned int opengl_id_ = -1;
 		virtual void Create_() = 0;
