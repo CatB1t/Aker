@@ -1,6 +1,8 @@
 #ifndef _RENDERER_VERTEX_BUFFER_H_
 #define _RENDERER_VERTEX_BUFFER_H_
 
+#include <vector>
+
 #include "vertex.h"
 
 namespace aker {
