@@ -8,6 +8,15 @@ namespace aker {
 
 	class Logger {
 	public:
+		enum class Level {
+			kInfo = 3,
+			kWarning = 2,
+			kError = 1,
+			kNone = 0
+		};
+
+		static void SetLevel(Level level);
+
 		Logger();
 		Logger(const std::string& prefix);
 
@@ -17,12 +26,7 @@ namespace aker {
 		void Error(const char* format, ...);
 
 	private:
-		enum class Level {
-			kInfo,
-			kWarning,
-			kError
-		};
-
+		static Level level_;
 		std::string prefix_;
 		void Log_(Level level, const char* format, va_list args);
 	};

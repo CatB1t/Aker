@@ -3,6 +3,10 @@
 #include <format>
 
 namespace aker {
+
+	void Logger::SetLevel(Level level) { level_ = level; };
+	Logger::Level Logger::level_ = Logger::Level::kInfo;
+
 	Logger::Logger() : prefix_("Unnamed_Logger")
 	{}
 
@@ -17,6 +21,9 @@ namespace aker {
 
 	void Logger::Info(const char* format, ...)
 	{
+		if (level_ < Level::kInfo)
+			return;
+
 		va_list args;
 		va_start(args, format);
 		Log_(Level::kInfo, format, args);
@@ -25,6 +32,9 @@ namespace aker {
 
 	void Logger::Warning(const char* format, ...)
 	{
+		if (level_ < Level::kWarning)
+			return;
+
 		va_list args;
 		va_start(args, format);
 		Log_(Level::kWarning, format, args);
@@ -33,6 +43,9 @@ namespace aker {
 
 	void Logger::Error(const char* format, ...)
 	{
+		if (level_ < Level::kError)
+			return;
+
 		va_list args;
 		va_start(args, format);
 		Log_(Level::kError, format, args);
