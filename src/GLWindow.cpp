@@ -7,6 +7,8 @@
 #include "glad/gl.h"
 #include "glfw/glfw3.h"
 
+#include "renderer/renderer.h"
+
 namespace aker {
 
     Logger GLWindow::callbackLogger_("GLFW_CALLBACK");
@@ -26,15 +28,15 @@ namespace aker {
 
     void GLWindow::Render()
     {
+        Renderer renderer;
+        renderer.OnStartup();
         while(!glfwWindowShouldClose(window_))
         {
-            // TODO temporary for testing
-            glClearColor(1.0, 0.64, 0.0, 1.0);
-            glClear(GL_COLOR_BUFFER_BIT);
-
+            renderer.Draw();
             glfwSwapBuffers(window_);
             glfwPollEvents();
         }
+        renderer.OnEnd();
     }
 
     void GLWindow::ErrorCallback_(int error, const char* desc)
