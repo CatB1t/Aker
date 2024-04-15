@@ -4,8 +4,8 @@
 #include <unordered_map>
 #include <string>
 
-#include "../renderer/IBase.h"
-#include "../utils/Logger.h"
+#include "../IBase.h"
+#include "../../utils/Logger.h"
 #include "Shader.h"
 
 namespace aker {

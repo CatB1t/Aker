@@ -5,8 +5,8 @@
 #include <unordered_map>
 
 #include "glad/gl.h"
-#include "../renderer/IBase.h"
-#include "../utils/Logger.h"
+#include "../IBase.h"
+#include "../../utils/Logger.h"
 
 namespace aker {
 	enum class ShaderType {
