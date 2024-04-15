@@ -16,6 +16,7 @@ namespace aker {
 		Mesh(std::vector<Vertex>& verts);
 		~Mesh();
 
+		void SetVerts(std::vector<Vertex>& verts);
 		void Draw();
 	private:
 		std::unique_ptr<VertexBuffer> buffer_;

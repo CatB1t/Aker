@@ -21,6 +21,12 @@ namespace aker {
 		buffer_ = std::make_unique<VertexBuffer>(verts_);
 	}
 
+	void Mesh::SetVerts(std::vector<Vertex>& verts)
+	{
+		verts_ = verts;
+		buffer_->SetData(verts);
+	}
+
 	Mesh::~Mesh()
 	{
 	}
