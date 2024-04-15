@@ -7,6 +7,7 @@ namespace aker {
 		Shader vert{ "default.vert" };
 		Shader frag{ "default.frag" };
 		shader_program_ = std::make_unique<ShaderProgram>(vert, frag);
+		shader_program_->Link();
 		buffer_ = std::make_unique<VertexBuffer>();
 	}
 
