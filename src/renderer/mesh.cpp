@@ -4,9 +4,7 @@ namespace aker {
 
 	Mesh::Mesh()
 	{
-		Shader vert{ "default.vert" };
-		Shader frag{ "default.frag" };
-		shader_program_ = std::make_unique<ShaderProgram>(vert, frag);
+		shader_program_ = std::make_unique<ShaderProgram>();
 		shader_program_->Link();
 		buffer_ = std::make_unique<VertexBuffer>();
 	}
@@ -14,9 +12,7 @@ namespace aker {
 	Mesh::Mesh(std::vector<Vertex>& verts)
 		: verts_(verts)
 	{
-		Shader vert{ "default.vert" };
-		Shader frag{ "default.frag" };
-		shader_program_ = std::make_unique<ShaderProgram>(vert, frag);
+		shader_program_ = std::make_unique<ShaderProgram>();
 		shader_program_->Link();
 		buffer_ = std::make_unique<VertexBuffer>(verts_);
 	}
