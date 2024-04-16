@@ -1,6 +1,7 @@
 #ifndef _SHADER_SHADERPROGRAM_H_
 #define _SHADER_SHADERPROGRAM_H_
 
+#include <memory>
 #include <unordered_map>
 #include <string>
 
@@ -12,20 +13,19 @@ namespace aker {
 
 	class ShaderProgram : public IBase {
 	public:
-		ShaderProgram();
-		ShaderProgram(Shader& vertex, Shader& fragment);
+		ShaderProgram(bool use_default = true);
 		~ShaderProgram();
 
 		void Bind() const override;
 		void Unbind() const override;
 
 		bool Link();
-		void AttachShader(Shader& shader);
+		void AttachShader(std::unique_ptr<Shader>& shader);
 	private:
 		void Create_() override;
 		void Delete_() override;
 		Logger logger_;
-		std::unordered_map<ShaderType, Shader> shaders_;
+		std::unordered_map<ShaderType, std::unique_ptr<Shader>> shaders_;
 	};
 
 }

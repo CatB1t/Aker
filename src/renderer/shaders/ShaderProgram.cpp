@@ -2,18 +2,19 @@
 
 namespace aker {
 
-	ShaderProgram::ShaderProgram()
+	ShaderProgram::ShaderProgram(bool use_default)
 		: logger_ ("ShaderProgram")
 	{
 		Create_();
 		Bind();
-	}
 
-	ShaderProgram::ShaderProgram(Shader& vertex, Shader& fragment)
-	: ShaderProgram()
-	{
-		AttachShader(vertex);
-		AttachShader(fragment);
+		if (use_default)
+		{
+			std::unique_ptr<Shader> frag = std::make_unique<Shader>("default.vert");
+			std::unique_ptr<Shader> vert = std::make_unique<Shader>("default.frag");
+			AttachShader(vert);
+			AttachShader(frag);
+		}
 	}
 
 	ShaderProgram::~ShaderProgram()
@@ -56,15 +57,15 @@ namespace aker {
 		return true;
 	}
 
-	void ShaderProgram::AttachShader(Shader& shader)
+	void ShaderProgram::AttachShader(std::unique_ptr<Shader>& shader)
 	{
-		shaders_.insert({ shader.GetType(), shader });
+		auto type = shader->GetType();
+		shaders_.insert({ type, std::move(shader) });
 
-		Shader& s = shaders_.at(shader.GetType());
-		s.Build();
-		glAttachShader(GetId(), s.GetId());
+		std::unique_ptr<Shader>& newShader = shaders_[type];
+		glAttachShader(GetId(), newShader->GetId());
 
-		logger_.Info("Attached shader with ID: %i", s.GetId());
+		logger_.Info("Attached shader with ID: %i", newShader->GetId());
 	}
 
 	void ShaderProgram::Create_()

@@ -11,6 +11,7 @@ namespace aker {
 		: path_(path), logger_("Shader")
 	{
 		Init_();
+		Create_();
 		logger_.Info(
 			"Loading %s with type %s from %s", 
 			name_.c_str(),
@@ -85,20 +86,15 @@ namespace aker {
 		}
 	}
 
-	void Shader::Build()
-	{
-		LoadSrcFile_();
-		Create_();
-		Compile_();
-		logger_.Info("Built shader %s(%i)", name_.c_str(), GetId());
-	}
-
 	void Shader::Create_()
 	{
 		SetId_(glCreateShader(shader_enum_to_internal_.at(type_)));
+		LoadSrcFile_();
 
 		const char* src = src_code_.c_str();
 		glShaderSource(GetId(), 1, &src, nullptr);
+		Compile_();
+		logger_.Info("Built shader %s(%i)", name_.c_str(), GetId());
 	}
 
 	void Shader::Delete_()
