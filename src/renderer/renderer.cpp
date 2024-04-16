@@ -1,19 +1,14 @@
 #include "renderer.h"
 
 #include "glad/gl.h"
+#include "primitive/square.h"
 
 namespace aker {
 	void Renderer::OnStartup()
 	{
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		// TODO for testing
-		std::vector<Vertex> verts = {
-			{-0.5f, -0.5f, 0.0f},
-			{0.5f, -0.5f, 0.0f},
-			{0.0f,  0.5f, 0.0f}
-		};
-
-		meshes_.push_back(std::make_unique<Mesh>(verts));
+		meshes_.push_back(std::make_unique<Square>());
 	}
 
 	void Renderer::Clear_()
