@@ -30,9 +30,14 @@ namespace aker {
     {
         Renderer renderer;
         renderer.OnStartup();
+        int width, height;
         while(!glfwWindowShouldClose(window_))
         {
+            glfwGetFramebufferSize(window_, &width, &height);
+            renderer.Resize(width, height);
+
             renderer.Draw();
+
             glfwSwapBuffers(window_);
             glfwPollEvents();
         }
@@ -59,6 +64,7 @@ namespace aker {
         {
 			logger_.Error("Failed to create window");
         }
+        glfwSetFramebufferSizeCallback(window_, WindowResizeCallback_);
 
         glfwMakeContextCurrent(window_);
         gladLoadGL(glfwGetProcAddress);
@@ -70,6 +76,11 @@ namespace aker {
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    }
+
+    void GLWindow::WindowResizeCallback_(GLFWwindow* window, int width, int height)
+    {
+        glViewport(0, 0, width, height);
     }
 
 }

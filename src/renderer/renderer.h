@@ -11,9 +11,12 @@ namespace aker {
 		void OnStartup();
 		void Draw();
 		void OnEnd();
+		void Resize(int width, int height);
 	private:
 		void Clear_();
 		std::vector<std::unique_ptr<Mesh>> meshes_;
+		int width_;
+		int height_;
 	};
 };
 

@@ -22,6 +22,7 @@ namespace aker {
 
     private:
         static void ErrorCallback_(int error, const char* desc);
+        static void WindowResizeCallback_(GLFWwindow* window, int width, int height);
         static Logger callbackLogger_;
 
         void InitWindow_();
