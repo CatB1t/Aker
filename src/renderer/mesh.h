@@ -7,6 +7,7 @@
 #include "vertex.h"
 #include "vertex_buffer.h"
 #include "shaders/ShaderProgram.h"
+#include "camera.h"
 
 namespace aker {
 
@@ -17,7 +18,7 @@ namespace aker {
 		~Mesh();
 
 		void SetVerts(std::vector<Vertex>& verts);
-		void Draw();
+		void Draw(const Camera& camera);
 	private:
 		std::unique_ptr<VertexBuffer> buffer_;
 		std::unique_ptr<ShaderProgram> shader_program_;

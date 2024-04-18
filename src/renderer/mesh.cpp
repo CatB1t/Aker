@@ -27,9 +27,10 @@ namespace aker {
 	{
 	}
 
-	void Mesh::Draw()
+	void Mesh::Draw(const Camera& camera)
 	{
 		shader_program_->Bind();
+		shader_program_->SetUniform("pv", camera.GetMatrix());
 		buffer_->Bind();
 		glDrawArrays(GL_TRIANGLES, 0, verts_.size());
 		buffer_->Unbind();
