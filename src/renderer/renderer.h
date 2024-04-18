@@ -3,6 +3,7 @@
 
 #include <memory>
 
+#include "camera.h"
 #include "mesh.h"
 
 namespace aker {
@@ -14,7 +15,10 @@ namespace aker {
 		void Resize(int width, int height);
 	private:
 		void Clear_();
+		void UpdateCamera_();
+
 		std::vector<std::unique_ptr<Mesh>> meshes_;
+		Camera camera_ = Camera();
 		int width_;
 		int height_;
 	};

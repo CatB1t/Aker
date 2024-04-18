@@ -16,11 +16,18 @@ namespace aker {
 		glClear(GL_COLOR_BUFFER_BIT);
 	}
 
+	void Renderer::UpdateCamera_()
+	{
+		camera_.SetWidthHeight(width_, height_);
+		camera_.Rotate();
+	}
+
 	void Renderer::Draw()
 	{
 		Clear_();
+		UpdateCamera_();
 		for (auto& mesh : meshes_)
-			mesh->Draw();
+			mesh->Draw(camera_);
 	}
 
 	void Renderer::OnEnd()
