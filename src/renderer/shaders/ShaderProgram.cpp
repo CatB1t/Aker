@@ -1,5 +1,7 @@
 #include "ShaderProgram.h"
 
+#include "glm/gtc/type_ptr.hpp"
+
 namespace aker {
 
 	ShaderProgram::ShaderProgram(bool use_default)
@@ -66,6 +68,12 @@ namespace aker {
 		glAttachShader(GetId(), newShader->GetId());
 
 		logger_.Info("Attached shader with ID: %i", newShader->GetId());
+	}
+
+	void ShaderProgram::SetUniform(const std::string& name, const glm::mat4& value)
+	{
+		int location = glGetUniformLocation(GetId(), name.c_str());
+		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
 	}
 
 	void ShaderProgram::Create_()

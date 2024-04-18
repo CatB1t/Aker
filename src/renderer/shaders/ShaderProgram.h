@@ -5,6 +5,8 @@
 #include <unordered_map>
 #include <string>
 
+#include "glm/glm.hpp"
+
 #include "../IBase.h"
 #include "../../utils/Logger.h"
 #include "Shader.h"
@@ -21,6 +23,7 @@ namespace aker {
 
 		bool Link();
 		void AttachShader(std::unique_ptr<Shader>& shader);
+		void SetUniform(const std::string& name, const glm::mat4& value);
 	private:
 		void Create_() override;
 		void Delete_() override;
