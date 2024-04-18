@@ -11,6 +11,7 @@ add_subdirectory(thirdparty/glfw)
 add_subdirectory(thirdparty/glad)
 add_subdirectory(thirdparty/glm)
 add_subdirectory(thirdparty/stbi)
+add_subdirectory(thirdparty/imgui)
 
 find_package(OpenGL REQUIRED)
-target_link_libraries(Aker PRIVATE stbi glm::glm glfw glad ${OPENGL_LIBRARIES})
+target_link_libraries(Aker PRIVATE dear_imgui stbi glm::glm glfw glad ${OPENGL_LIBRARIES})

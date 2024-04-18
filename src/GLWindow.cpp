@@ -7,6 +7,10 @@
 #include "glad/gl.h"
 #include "glfw/glfw3.h"
 
+#include "imgui/imgui.h"
+#include "imgui/backends/imgui_impl_glfw.h"
+#include "imgui/backends/imgui_impl_opengl3.h"
+
 #include "renderer/renderer.h"
 
 namespace aker {
@@ -68,7 +72,10 @@ namespace aker {
 
         glfwMakeContextCurrent(window_);
         gladLoadGL(glfwGetProcAddress);
-
+        IMGUI_CHECKVERSION();
+        ImGui::CreateContext();
+        ImGui_ImplGlfw_InitForOpenGL(window_, true);
+        ImGui_ImplOpenGL3_Init("#version 330");
     }
 
     void GLWindow::SetOpenGLHints_()
