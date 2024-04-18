@@ -5,14 +5,14 @@
 #include "imgui/backends/imgui_impl_opengl3.h"
 
 #include "glad/gl.h"
-#include "primitive/square.h"
+#include "primitive/cube.h"
 
 namespace aker {
 	void Renderer::OnStartup()
 	{
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		// TODO for testing
-		meshes_.push_back(std::make_unique<Square>());
+		meshes_.push_back(std::make_unique<Cube>());
 	}
 
 	void Renderer::Clear_()
