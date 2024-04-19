@@ -44,4 +44,12 @@ namespace aker {
 		shader_program_->Unbind();
 	}
 
+	void Mesh::ShowDebugMenu() const
+	{
+		ImGui::Text(name_.c_str());
+		// TODO not sure if that is safe
+		ImGui::InputText("Name", (char*)name_.c_str(), name_.capacity());
+		ImGui::DragFloat3("Position", (float*)glm::value_ptr(position_), 0.01f, -100.0f, 100.0f);
+	}
+
 }

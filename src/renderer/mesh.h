@@ -22,6 +22,8 @@ namespace aker {
 		void SetVerts(std::vector<Vertex>& verts);
 		void Draw(const Camera& camera);
 		const std::string& GetName() const { return name_; };
+		void ShowDebugMenu() const;
+
 	private:
 		std::string name_;
 		std::unique_ptr<VertexBuffer> buffer_;
