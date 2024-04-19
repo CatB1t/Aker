@@ -2,15 +2,16 @@
 
 namespace aker {
 
-	Mesh::Mesh()
+	Mesh::Mesh(const std::string& name)
+		: name_(name)
 	{
 		shader_program_ = std::make_unique<ShaderProgram>();
 		shader_program_->Link();
 		buffer_ = std::make_unique<VertexBuffer>();
 	}
 
-	Mesh::Mesh(std::vector<Vertex>& verts)
-		: verts_(verts)
+	Mesh::Mesh(std::vector<Vertex>& verts, const std::string& name)
+		: verts_(verts), name_(name)
 	{
 		shader_program_ = std::make_unique<ShaderProgram>();
 		shader_program_->Link();

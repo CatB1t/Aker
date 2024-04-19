@@ -11,7 +11,8 @@ namespace aker {
 
     class Square : public Mesh {
         public:
-        Square() 
+        Square(const std::string& name = "Unnamed Square")
+            : Mesh(name)
         {
             std::vector<Vertex> verts = {
                 {-0.5f, -0.5f, 0.0f},

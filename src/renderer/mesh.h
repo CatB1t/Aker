@@ -13,13 +13,15 @@ namespace aker {
 
 	class Mesh {
 	public:
-		Mesh();
-		Mesh(std::vector<Vertex>& verts);
+		Mesh(const std::string& name = "Unnamed");
+		Mesh(std::vector<Vertex>& verts, const std::string& name = "Unnamed");
 		~Mesh();
 
 		void SetVerts(std::vector<Vertex>& verts);
 		void Draw(const Camera& camera);
+		const std::string& GetName() const { return name_; };
 	private:
+		std::string name_;
 		std::unique_ptr<VertexBuffer> buffer_;
 		std::unique_ptr<ShaderProgram> shader_program_;
 		std::vector<Vertex> verts_;

@@ -10,7 +10,8 @@ namespace aker {
 
     class Cube : public Mesh {
         public:
-        Cube() 
+        Cube(const std::string& name = "Unnamed Cube")
+			: Mesh(name)
         {
             std::vector<Vertex> verts = {
 				{-0.5f, -0.5f, -0.5f, },
