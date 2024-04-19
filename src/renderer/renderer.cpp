@@ -32,6 +32,7 @@ namespace aker {
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 		ImGui::ShowDemoWindow();
+		camera_.ShowDebugMenu();
 		ImGui::Render();
 
 		Clear_();
