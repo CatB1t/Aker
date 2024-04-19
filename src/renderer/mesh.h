@@ -4,6 +4,8 @@
 #include <vector>
 #include <memory>
 
+#include "glm/glm.hpp"
+
 #include "vertex.h"
 #include "vertex_buffer.h"
 #include "shaders/ShaderProgram.h"
@@ -25,6 +27,9 @@ namespace aker {
 		std::unique_ptr<VertexBuffer> buffer_;
 		std::unique_ptr<ShaderProgram> shader_program_;
 		std::vector<Vertex> verts_;
+
+		glm::vec3 position_ { 0.0f };
+		glm::vec3 rotation_ { 0.0f };
 	};
 
 }

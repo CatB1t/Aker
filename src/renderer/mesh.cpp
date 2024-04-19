@@ -1,5 +1,8 @@
 #include "mesh.h"
 
+#include "glm/gtc/matrix_transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
+
 namespace aker {
 
 	Mesh::Mesh(const std::string& name)
@@ -32,6 +35,9 @@ namespace aker {
 	{
 		shader_program_->Bind();
 		shader_program_->SetUniform("pv", camera.GetMatrix());
+		glm::mat4 model_transform{ 1.0f };
+		model_transform = glm::translate(model_transform, position_);
+		shader_program_->SetUniform("model", model_transform);
 		buffer_->Bind();
 		glDrawArrays(GL_TRIANGLES, 0, verts_.size());
 		buffer_->Unbind();
