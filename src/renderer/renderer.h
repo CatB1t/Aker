@@ -19,9 +19,11 @@ namespace aker {
 		void DebugUINewFrame_();
 		void DebugUIPreSceneRender_();
 		void DebugUIPostSceneRender_();
+		void ShowDebugWindow_();
 
 		std::vector<std::unique_ptr<Mesh>> meshes_;
 		Camera camera_ = Camera();
+		int ui_selecetd_mesh_ = -1;
 		int width_;
 		int height_;
 	};

@@ -13,6 +13,7 @@ namespace aker {
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		// TODO for testing
 		meshes_.push_back(std::make_unique<Cube>());
+		meshes_.push_back(std::make_unique<Cube>());
 	}
 
 	void Renderer::Clear_()
@@ -43,11 +44,32 @@ namespace aker {
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 	}
 
+	void Renderer::ShowDebugWindow_()
+	{
+		ImGui::Begin("Scene Objects");
+		for (int i = 0; i < meshes_.size(); ++i)
+		{
+			ImGui::PushID(i);
+			if (ImGui::Selectable(meshes_[i]->GetName().c_str(), (ui_selecetd_mesh_ == i)))
+				ui_selecetd_mesh_ = i;
+			ImGui::PopID();
+		}
+		ImGui::End();
+		ImGui::Begin("Object properties");
+		if(ui_selecetd_mesh_ == -1)
+			ImGui::Text("No selected object");
+		else {
+			meshes_[ui_selecetd_mesh_]->ShowDebugMenu();
+		}
+		ImGui::End();
+	}
+
 	void Renderer::Draw()
 	{
 		DebugUINewFrame_();
-		ImGui::ShowDemoWindow();
+		//ImGui::ShowDemoWindow();
 		camera_.ShowDebugMenu();
+		ShowDebugWindow_();
 		DebugUIPreSceneRender_();
 
 		Clear_();
