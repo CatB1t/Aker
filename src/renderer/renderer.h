@@ -16,6 +16,9 @@ namespace aker {
 	private:
 		void Clear_();
 		void UpdateCamera_();
+		void DebugUINewFrame_();
+		void DebugUIPreSceneRender_();
+		void DebugUIPostSceneRender_();
 
 		std::vector<std::unique_ptr<Mesh>> meshes_;
 		Camera camera_ = Camera();

@@ -26,21 +26,36 @@ namespace aker {
 		camera_.Rotate();
 	}
 
-	void Renderer::Draw()
+	void Renderer::DebugUINewFrame_()
 	{
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
+	}
+
+	void Renderer::DebugUIPreSceneRender_()
+	{
+		ImGui::Render();
+	}
+
+	void Renderer::DebugUIPostSceneRender_()
+	{
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	}
+
+	void Renderer::Draw()
+	{
+		DebugUINewFrame_();
 		ImGui::ShowDemoWindow();
 		camera_.ShowDebugMenu();
-		ImGui::Render();
+		DebugUIPreSceneRender_();
 
 		Clear_();
 		UpdateCamera_();
 		for (auto& mesh : meshes_)
 			mesh->Draw(camera_);
 
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		DebugUIPostSceneRender_();
 	}
 
 	void Renderer::OnEnd()
