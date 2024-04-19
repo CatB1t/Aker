@@ -4,6 +4,8 @@
 #include "glm/ext/matrix_clip_space.hpp"
 #include "glfw/glfw3.h"
 
+#include "imgui.h"
+
 namespace aker {
 
 	Camera::Camera()
@@ -26,8 +28,31 @@ namespace aker {
 
 	void Camera::Rotate()
 	{
-		float angle = glm::radians(glfwGetTime() * speed);
+		if (autoRotate_)
+		{
+			// TODO doesn't work properly
+			angle = glm::radians(glfwGetTime() * speed);
+		}
 		position = glm::vec3(glm::sin(angle) * radius, height, glm::cos(angle) * radius);
+	}
+
+	void Camera::ShowDebugMenu()
+	{
+		ImGui::Begin("Camera Properties");
+		ImGui::Checkbox("Auto Rotate", &autoRotate_);
+
+		// Disable Speed or Angle depending on if auto rotate is enabled
+		if (!autoRotate_) ImGui::BeginDisabled();
+		ImGui::SliderFloat("Speed", &speed, 0.0f, 10.0f);
+		if (!autoRotate_) ImGui::EndDisabled();
+		else ImGui::BeginDisabled();
+		ImGui::SliderAngle("Angle", &angle);
+		if (autoRotate_) ImGui::EndDisabled();
+
+		ImGui::SliderFloat("FOV", &fov, 1.0f, 145.0f);
+		ImGui::SliderFloat("Height", &height, -5.0f, 5.0f);
+		ImGui::SliderFloat("Radius", &radius, 1.0f, 10.0f);
+		ImGui::End();
 	}
 
 	glm::mat4 Camera::GetView() const
