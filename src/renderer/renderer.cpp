@@ -61,6 +61,11 @@ namespace aker {
 			ImGui::Text("No selected object");
 		else {
 			meshes_[ui_selecetd_mesh_]->ShowDebugMenu();
+			if (ImGui::Button("Delete"))
+			{
+				meshes_.erase(meshes_.begin() + ui_selecetd_mesh_);
+				ui_selecetd_mesh_ = -1;
+			}
 		}
 		ImGui::End();
 	}
