@@ -14,8 +14,11 @@ namespace aker {
 		glBindBuffer(GL_ARRAY_BUFFER, vbo_);
 		// TODO refactor, should not be hard coded but dynamically retrieved
 		// from Vertex struct
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, Vertex::Size(), (void*)0);
 		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
+
+		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, Vertex::Size(), (void*)(3 * sizeof(float)));
+		glEnableVertexAttribArray(1);
 		// TODO end refactor
 		Unbind();
 	}
@@ -23,9 +26,7 @@ namespace aker {
 	VertexBuffer::VertexBuffer(std::vector<Vertex>& data)
 		: VertexBuffer()
 	{
-		Bind();
-		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * data.size(), std::data(data), GL_STATIC_DRAW);
-		Unbind();
+		SetData(data);
 	}
 
 	VertexBuffer::~VertexBuffer()
@@ -37,7 +38,7 @@ namespace aker {
 	void VertexBuffer::SetData(std::vector<Vertex>& data)
 	{
 		Bind();
-		glBufferData(GL_ARRAY_BUFFER, sizeof(Vertex) * data.size(), std::data(data), GL_STATIC_DRAW);
+		glBufferData(GL_ARRAY_BUFFER, Vertex::Size() * data.size(), std::data(data), GL_STATIC_DRAW);
 		Unbind();
 	}
 

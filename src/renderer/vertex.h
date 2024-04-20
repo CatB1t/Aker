@@ -5,7 +5,9 @@ namespace aker{
 
 	struct Vertex {
 		float position[3];
-		static int Size() { return sizeof(position); };
+		float normal[3];
+
+		static int Size() { return sizeof(Vertex); };
 	};
 
 }
