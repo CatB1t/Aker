@@ -30,6 +30,7 @@ namespace aker {
 		std::vector<Vertex> verts_;
 
 		glm::vec3 position_ { 0.0f };
+		glm::vec3 scale_ { 1.0f };
 		glm::vec3 rotation_ { 0.0f };
 	};
 
