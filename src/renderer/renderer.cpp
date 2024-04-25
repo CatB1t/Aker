@@ -13,6 +13,8 @@ namespace aker {
 		glEnable(GL_DEPTH_TEST);
 		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		// TODO for testing
+		auto default_shader = std::make_unique<ShaderProgram>();
+		shader_manager_.Add("default", std::move(default_shader));
 		meshes_.push_back(std::make_unique<Cube>());
 		meshes_.push_back(std::make_unique<Cube>());
 	}
@@ -81,7 +83,7 @@ namespace aker {
 		Clear_();
 		UpdateCamera_();
 		for (auto& mesh : meshes_)
-			mesh->Draw(camera_);
+			mesh->Draw(shader_manager_.Get("default"), camera_);
 
 		DebugUIPostSceneRender_();
 	}
