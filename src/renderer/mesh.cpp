@@ -9,16 +9,12 @@ namespace aker {
 	Mesh::Mesh(const std::string& name)
 		: name_(name)
 	{
-		shader_program_ = std::make_unique<ShaderProgram>();
-		shader_program_->Link();
 		buffer_ = std::make_unique<VertexBuffer>();
 	}
 
 	Mesh::Mesh(std::vector<Vertex>& verts, const std::string& name)
 		: verts_(verts), name_(name)
 	{
-		shader_program_ = std::make_unique<ShaderProgram>();
-		shader_program_->Link();
 		buffer_ = std::make_unique<VertexBuffer>(verts_);
 	}
 
@@ -32,17 +28,17 @@ namespace aker {
 	{
 	}
 
-	void Mesh::Draw(const Camera& camera)
+	void Mesh::Draw(ShaderProgram* shader_program, const Camera& camera)
 	{
-		shader_program_->Bind();
-		shader_program_->SetUniform("pv", camera.GetMatrix());
+		shader_program->Bind();
+		shader_program->SetUniform("pv", camera.GetMatrix());
 		glm::mat4 model_transform{ 1.0f };
 		model_transform = glm::translate(model_transform, position_);
-		shader_program_->SetUniform("model", model_transform);
+		shader_program->SetUniform("model", model_transform);
 		buffer_->Bind();
 		glDrawArrays(GL_TRIANGLES, 0, verts_.size());
 		buffer_->Unbind();
-		shader_program_->Unbind();
+		shader_program->Unbind();
 	}
 
 	void Mesh::ShowDebugMenu() const

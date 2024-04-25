@@ -20,14 +20,13 @@ namespace aker {
 		~Mesh();
 
 		void SetVerts(std::vector<Vertex>& verts);
-		void Draw(const Camera& camera);
+		void Draw(ShaderProgram* shader_program, const Camera& camera);
 		const std::string& GetName() const { return name_; };
 		void ShowDebugMenu() const;
 
 	private:
 		std::string name_;
 		std::unique_ptr<VertexBuffer> buffer_;
-		std::unique_ptr<ShaderProgram> shader_program_;
 		std::vector<Vertex> verts_;
 
 		glm::vec3 position_ { 0.0f };
