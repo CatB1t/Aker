@@ -77,6 +77,12 @@ namespace aker {
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(value));
 	}
 
+	void ShaderProgram::SetUniform(const std::string& name, const glm::vec3& value)
+	{
+		int location = glGetUniformLocation(GetId(), name.c_str());
+		glUniform3f(location, value.x, value.y, value.z);
+	}
+
 	void ShaderProgram::Create_()
 	{
 		SetId_(glCreateProgram());

@@ -24,6 +24,7 @@ namespace aker {
 		bool Link();
 		void AttachShader(std::unique_ptr<Shader>& shader);
 		void SetUniform(const std::string& name, const glm::mat4& value);
+		void SetUniform(const std::string& name, const glm::vec3& value);
 	private:
 		void Create_() override;
 		void Delete_() override;
