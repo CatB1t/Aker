@@ -9,9 +9,11 @@ namespace aker {
 	class Light
 	{
 	public:
-		Light(const glm::vec3 position, const glm::vec3 color);
+		Light(const glm::vec3& position, const glm::vec3& color);
 		~Light() = default;
 
+		const glm::vec3& GetPosition() const { return position_; };
+		const glm::vec3& GetColor() const { return color_; };
 	private:
 		glm::vec3 position_;
 		glm::vec3 color_;
