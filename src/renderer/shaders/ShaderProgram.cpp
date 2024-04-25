@@ -16,6 +16,7 @@ namespace aker {
 			std::unique_ptr<Shader> vert = std::make_unique<Shader>("default.frag");
 			AttachShader(vert);
 			AttachShader(frag);
+			Link();
 		}
 	}
 
