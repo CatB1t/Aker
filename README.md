@@ -1,4 +1,4 @@
-# Aker
+# Aker (WIP)
 Cross-platform 3D renderer with OpenGL. Supports lighting, shadows, and model loading. Full scene editor
 with ImGUI.
 
