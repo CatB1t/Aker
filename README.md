@@ -12,3 +12,9 @@ with ImGUI.
 - Get the code `git clone https://github.com/CatB1t/Aker.git`
 - In the project directory, create a directory `build` 
 - in the `build` directory, run `cmake -S ../`
+
+### Features
+- [x] Phong Lighting
+- [X] Scene Editor
+- [ ] Model Loading
+- [ ] Shadow mapping
