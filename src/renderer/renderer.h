@@ -6,6 +6,7 @@
 #include "shaders/shader_manager.h"
 #include "camera.h"
 #include "mesh.h"
+#include "light.h"
 
 namespace aker {
 	class Renderer {
@@ -23,6 +24,7 @@ namespace aker {
 		void ShowDebugWindow_();
 
 		std::vector<std::unique_ptr<Mesh>> meshes_;
+		std::vector<Light> lights_;
 		ShaderManager shader_manager_;
 		Camera camera_ = Camera();
 		int ui_selecetd_mesh_ = -1;

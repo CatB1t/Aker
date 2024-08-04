@@ -5,6 +5,7 @@
 #include "imgui/backends/imgui_impl_opengl3.h"
 
 #include "glad/gl.h"
+#include "glm/glm.hpp"
 #include "primitive/cube.h"
 
 namespace aker {
@@ -17,6 +18,7 @@ namespace aker {
 		shader_manager_.Add("default", std::move(default_shader));
 		meshes_.push_back(std::make_unique<Cube>());
 		meshes_.push_back(std::make_unique<Cube>());
+		lights_.push_back(Light{ glm::vec3({3.0, 3.0, -2.0}), glm::vec3({1.0})}); // TODO test light
 	}
 
 	void Renderer::Clear_()
@@ -82,6 +84,15 @@ namespace aker {
 
 		Clear_();
 		UpdateCamera_();
+
+		/* TODO Should be done for every shader */
+		ShaderProgram *shader = shader_manager_.Get("default");
+		shader->Bind();
+		shader->SetUniform("light.position", lights_[0].GetPosition());
+		shader->SetUniform("light.color", lights_[0].GetColor());
+		shader->Unbind();
+		/* */
+
 		for (auto& mesh : meshes_)
 			mesh->Draw(shader_manager_.Get("default"), camera_);
 
