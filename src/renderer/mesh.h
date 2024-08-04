@@ -32,6 +32,7 @@ namespace aker {
 		glm::vec3 position_ { 0.0f };
 		glm::vec3 scale_ { 1.0f };
 		glm::vec3 rotation_ { 0.0f };
+		glm::vec3 color_ { 1.0f, 1.0f, 0.0f };
 	};
 
 }

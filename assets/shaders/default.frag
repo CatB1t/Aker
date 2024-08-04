@@ -13,8 +13,7 @@ in vec3 vNormal;
 
 uniform Light light;
 uniform vec3 cameraPosition;
-
-vec3 materialColor = vec3(1.0f, 0.0f, 0.0f);
+uniform vec3 materialColor;
 
 vec3 calculateLight()
 {
