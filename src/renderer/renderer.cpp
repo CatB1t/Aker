@@ -88,6 +88,7 @@ namespace aker {
 		/* TODO Should be done for every shader */
 		ShaderProgram *shader = shader_manager_.Get("default");
 		shader->Bind();
+		shader->SetUniform("cameraPosition", camera_.position);
 		shader->SetUniform("light.position", lights_[0].GetPosition());
 		shader->SetUniform("light.color", lights_[0].GetColor());
 		shader->Unbind();
